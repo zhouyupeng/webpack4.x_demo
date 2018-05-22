@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require("webpack");
 const merge = require("webpack-merge");
-
 // 清除目录等
 const cleanWebpackPlugin = require("clean-webpack-plugin");
 //4.x之后用以压缩
