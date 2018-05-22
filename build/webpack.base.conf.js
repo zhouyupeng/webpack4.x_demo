@@ -11,6 +11,7 @@ const htmlWebpackPlugin = require("html-webpack-plugin");
 const copyWebpackPlugin = require("copy-webpack-plugin");
 const rules = require("./webpack.rules.conf.js");
 // 获取html-webpack-plugin参数的方法
+console.log('process.env.NODE_ENV',process.env.NODE_ENV);
 var getHtmlConfig = function (name, chunks) {
 	return {
 		template: `./src/pages/${name}/index.html`,
@@ -68,11 +69,11 @@ module.exports = {
 	optimization: {
 		splitChunks: {
 			cacheGroups: {
-				jquery: {
+				vendor: {
 					// test: /\.js$/,
-					test: /[\\/]node_modules[\\/]jquery[\\/]/,
+					test: /[\\/]node_modules[\\/]/,
 					chunks: "initial", //表示显示块的范围，有三个可选值：initial(初始块)、async(按需加载块)、all(全部块)，默认为all;
-					name: "jquery", //拆分出来块的名字(Chunk Names)，默认由块名和hash值自动生成；
+					name: "vendor", //拆分出来块的名字(Chunk Names)，默认由块名和hash值自动生成；
 					enforce: true,
 				}
 			}
@@ -83,7 +84,7 @@ module.exports = {
 const htmlArray = [{
 		_html: 'index',
 		title: '首页',
-		chunks: ['jquery', 'index']
+		chunks: ['vendor', 'index']
 	},
 	{
 		_html: 'login',

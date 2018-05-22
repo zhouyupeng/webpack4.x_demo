@@ -48,8 +48,7 @@
 		"webpack-merge": "^4.1.2"
 	},
 	"dependencies": {
-		"jquery": "^3.3.1",
-		"vue": "^2.5.16"
+		"jquery": "^3.3.1"
 	},
 	"browserslist": [
 		"defaults",
