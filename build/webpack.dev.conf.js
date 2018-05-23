@@ -3,7 +3,7 @@ const webpack = require("webpack");
 const merge = require("webpack-merge");
 const webpackConfigBase = require('./webpack.base.conf');
 const webpackConfigDev = {
-	mode: 'development',
+	mode: 'development', // 通过 mode 声明开发环境
 	output: {
 		path: path.resolve(__dirname, '../dist'),
 		// 打包多出口文件

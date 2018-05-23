@@ -32,7 +32,7 @@ const rules = [{
 			// 需要下载file-loader和url-loader
 			loader: "url-loader",
 			options: {
-				limit: 20,
+				limit: 5 * 1024,//小于这个时将会已base64位图片打包处理
 				// 图片文件输出的文件夹
 				outputPath: "images"
 			}

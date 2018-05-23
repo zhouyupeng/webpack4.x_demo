@@ -11,7 +11,6 @@ const htmlWebpackPlugin = require("html-webpack-plugin");
 const copyWebpackPlugin = require("copy-webpack-plugin");
 const rules = require("./webpack.rules.conf.js");
 // 获取html-webpack-plugin参数的方法
-console.log('process.env.NODE_ENV',process.env.NODE_ENV);
 var getHtmlConfig = function (name, chunks) {
 	return {
 		template: `./src/pages/${name}/index.html`,
@@ -32,7 +31,7 @@ var getHtmlConfig = function (name, chunks) {
 module.exports = {
 	entry: {
 		// 多入口文件
-		index: ['./src/pages/index/index.js', './src/js/tab.js'],
+		index: ['./src/pages/index/index.js',],
 		login: './src/pages/login/index.js',
 	},
 	module: {
@@ -65,7 +64,7 @@ module.exports = {
 		}),
 
 	],
-	// webpack4里面移除了commonChunksPulgin插件，放在了config.optimization里面,提取js， lib1名字可改
+	// webpack4里面移除了commonChunksPulgin插件，放在了config.optimization里面,提取js， vendor名字可改
 	optimization: {
 		splitChunks: {
 			cacheGroups: {

@@ -9,7 +9,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const webpackConfigBase = require('./webpack.base.conf');
 const webpackConfigProd = {
-	mode: 'production',
+	mode: 'production', // 通过 mode 声明生产环境
 	output: {
 		path: path.resolve(__dirname, '../dist'),
 		// 打包多出口文件
@@ -44,7 +44,7 @@ const webpackConfigProd = {
 				}
 			}
 		}),
-		// new BundleAnalyzerPlugin(),
+		new BundleAnalyzerPlugin(),
 	],
 	module: {
 		rules: []
