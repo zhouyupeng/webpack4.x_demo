@@ -17,6 +17,7 @@ const webpackConfigProd = {
 		filename: './js/[name].[hash].js',
 		publicPath: './'
 	},
+	devtool: 'cheap-source-map',
 	plugins: [
 		//删除dist目录
 		new cleanWebpackPlugin(['dist'], {
