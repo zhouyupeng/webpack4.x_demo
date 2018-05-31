@@ -8,10 +8,10 @@ const webpackConfigDev = {
 		path: path.resolve(__dirname, '../dist'),
 		// 打包多出口文件
 		// 生成 a.bundle.[hash].js  b.bundle.[hash].js
-		filename: './js/[name].bundle.[hash].js'
+		filename: './js/[name].bundle.js'
 	},
 	devServer: {
-		contentBase: path.join(__dirname, "../dist"),
+		contentBase: path.join(__dirname, "../src"),
 		publicPath:'/',
 		host: "127.0.0.1",
 		port: "8089",
@@ -24,7 +24,7 @@ const webpackConfigDev = {
 		//热更新
 		new webpack.HotModuleReplacementPlugin(),
 	],
-	devtool: "source-map",  // 开启调试模式
+	// devtool: "source-map",  // 开启调试模式
 	module: {
 		rules: []
 	},

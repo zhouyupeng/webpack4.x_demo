@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require("webpack");
 const glob = require("glob");
 // 分离css
-const extractTextPlugin = require("extract-text-webpack-plugin");
+
 //消除冗余的css
 const purifyCssWebpack = require("purifycss-webpack");
 // html模板
@@ -31,7 +31,7 @@ var getHtmlConfig = function (name, chunks) {
 module.exports = {
 	entry: {
 		// 多入口文件
-		index: ['./src/pages/index/index.js',],
+		index: './src/pages/index/index.js',
 		login: './src/pages/login/index.js',
 	},
 	module: {
@@ -54,10 +54,6 @@ module.exports = {
 			to: './assets',
 			ignore: ['.*']
 		}]),
-		// 分离css插件参数为提取出去的路径
-		new extractTextPlugin({
-			filename: 'css/[name].[hash:8].min.css',
-		}),
 		// 消除冗余的css代码
 		new purifyCssWebpack({
 			paths: glob.sync(path.join(__dirname, "../src/pages/*/*.html"))
@@ -65,25 +61,27 @@ module.exports = {
 
 	],
 	// webpack4里面移除了commonChunksPulgin插件，放在了config.optimization里面,提取js， vendor名字可改
-	optimization: {
-		splitChunks: {
-			cacheGroups: {
-				vendor: {
-					// test: /\.js$/,
-					test: /[\\/]node_modules[\\/]/,
-					chunks: "initial", //表示显示块的范围，有三个可选值：initial(初始块)、async(按需加载块)、all(全部块)，默认为all;
-					name: "vendor", //拆分出来块的名字(Chunk Names)，默认由块名和hash值自动生成；
-					enforce: true,
-				}
-			}
-		}
-	},
+	// optimization: {
+	// 	splitChunks: {
+	// 		cacheGroups: {
+	// 			vendor: {
+	// 				// test: /\.js$/,
+	// 				test: path.resolve(__dirname, '../node_modules'),
+	// 				chunks: "initial", //表示显示块的范围，有三个可选值：initial(初始块)、async(按需加载块)、all(全部块)，默认为all;
+	// 				name: "vendor", //拆分出来块的名字(Chunk Names)，默认由块名和hash值自动生成；
+	// 				minChunks: 1,
+	// 				reuseExistingChunk: true,
+	// 				enforce: true
+	// 			}
+	// 		}
+	// 	}
+	// },
 }
 //配置页面
 const htmlArray = [{
 		_html: 'index',
 		title: '首页',
-		chunks: ['vendor', 'index']
+		chunks: [ 'index']
 	},
 	{
 		_html: 'login',
