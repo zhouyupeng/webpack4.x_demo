@@ -1,25 +1,20 @@
-const extractTextPlugin = require("extract-text-webpack-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const devMode = process.env.NODE_ENV !== 'production'
 const rules = [{
 		test: /\.(css|scss|sass)$/,
-		// 不分离的写法
-		// use: ["style-loader", "css-loader",sass-loader"]
-		// 使用postcss不分离的写法
-		// use: ["style-loader", "css-loader", "sass-loader","postcss-loader"]
-		// 此处为分离css的写法
-		/*use: extractTextPlugin.extract({
-			fallback: "style-loader",
-			use: ["css-loader", "sass-loader"],
-			// css中的基础路径
-			publicPath: "../"
-		})*/
-		// 区别开发环境和生成环境
-		use: process.env.NODE_ENV === "development" ? ["style-loader", "css-loader", "sass-loader", "postcss-loader"] : extractTextPlugin.extract({
-			fallback: "style-loader",
-			use: ["css-loader", "sass-loader", "postcss-loader"],
-			// css中的基础路径
-			publicPath: "../"
-
-		})
+		use: [
+			devMode ? 'style-loader' : {
+				loader: MiniCssExtractPlugin.loader,
+				options: {
+					// you can specify a publicPath here
+					// by default it use publicPath in webpackOptions.output
+					publicPath: '../'
+				}
+			},
+			'css-loader',
+			'postcss-loader',
+			'sass-loader',
+		]
 	},
 	{
 		test: /\.js$/,
@@ -55,12 +50,19 @@ const rules = [{
 		// 不分离的写法
 		// use: ["style-loader", "css-loader", "less-loader"]
 		// 区别开发环境和生成环境
-		use: process.env.NODE_ENV === "development" ? ["style-loader", "css-loader", "less-loader"] : extractTextPlugin.extract({
-			fallback: "style-loader",
-			use: ["css-loader", "less-loader"],
-			// css中的基础路径
-			publicPath: "../"
-		})
+		use: [
+			devMode ? 'style-loader' : {
+				loader: MiniCssExtractPlugin.loader,
+				options: {
+					// you can specify a publicPath here
+					// by default it use publicPath in webpackOptions.output
+					publicPath: '../'
+				}
+			},
+			'css-loader',
+			'postcss-loader',
+			'less-loader',
+		]
 	},
 ];
 module.exports = rules;
