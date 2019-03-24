@@ -1,13 +1,12 @@
 ### 2019年 03-24日更新
-本文写于10月前，鉴于还有很多人用来学习，花了点时间更新了下。
 ### 更新如下 
 
  - 升级babel到目前最高版本
-babel7 后来的版本舍弃了以前的babel-*-* 的命名方式，改成了 @babel/*-*
-修改依赖和 .babelrc 文件后就能正常启动项目了。
-参考 [https://segmentfault.com/a/1190000016458913](https://segmentfault.com/a/1190000016458913)
-[https://www.jianshu.com/p/e21d19875fbb](https://www.jianshu.com/p/e21d19875fbb)
- - 删除extract-text-webpack-plugin，改用mini-css-extract-plugin
+babel7 后来的版本舍弃了以前的 babel-*-* 的命名方式，改成了 @babel/*-*
+修改依赖和 .babelrc 文件后就能正常启动项目了，[文档](https://babeljs.io/docs/en/v7-migration)。
+参考 [https://segmentfault.com/a/1190000016458913](https://segmentfault.com/a/1190000016458913),
+[https://www.jianshu.com/p/e21d19875fbb](https://www.jianshu.com/p/e21d19875fbb) 
+ - 删除extract-text-webpack-plugin，改用mini-css-extract-plugin [文档](https://www.npmjs.com/package/mini-css-extract-plugin)
  
 
 ### 更新后报错
