@@ -5,7 +5,6 @@ const merge = require("webpack-merge");
 const cleanWebpackPlugin = require("clean-webpack-plugin");
 //4.x之后用以压缩
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 //4.x之后提取css
 const miniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -19,7 +18,7 @@ const webpackConfigProd = {
 		filename: './js/[name].[chunkhash:8].js',
 		publicPath: './'
 	},
-	devtool: 'cheap-source-map',
+	devtool: 'none',
 	plugins: [
 		//删除dist目录
 		new cleanWebpackPlugin({
@@ -49,12 +48,16 @@ const webpackConfigProd = {
 					drop_console: true
 				}
 			}
-		}),
-		new BundleAnalyzerPlugin(),
+		})
 	],
 	module: {
 		rules: []
 	},
 
+}
+
+if(process.env.npm_config_report){//打包后模块大小分析//npm run build --report
+	const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+	webpackConfigProd.plugins.push(new BundleAnalyzerPlugin())
 }
 module.exports = merge(webpackConfigBase, webpackConfigProd);

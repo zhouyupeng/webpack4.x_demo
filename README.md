@@ -7,7 +7,7 @@ babel7 后来的版本舍弃了以前的 babel-*-* 的命名方式，改成了 @
 参考 [https://segmentfault.com/a/1190000016458913](https://segmentfault.com/a/1190000016458913),
 [https://www.jianshu.com/p/e21d19875fbb](https://www.jianshu.com/p/e21d19875fbb) 
  - 删除extract-text-webpack-plugin，改用mini-css-extract-plugin [文档](https://www.npmjs.com/package/mini-css-extract-plugin)
- 
+ - npm run build --report //打包后文件大小分析
 
 ### 更新后报错
 
