@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require("webpack");
 const glob = require("glob");
+const fs = require("fs");
 //消除冗余的css
 const purifyCssWebpack = require("purifycss-webpack");
 // html模板
@@ -9,7 +10,7 @@ const htmlWebpackPlugin = require("html-webpack-plugin");
 const copyWebpackPlugin = require("copy-webpack-plugin");
 const rules = require("./webpack.rules.conf.js");
 // 获取html-webpack-plugin参数的方法
-var getHtmlConfig = function (name, chunks) {
+let getHtmlConfig = function (name, chunks) {
 	return {
 		template: `./src/pages/${name}/index.html`,
 		filename: `${name}.html`,
@@ -26,12 +27,24 @@ var getHtmlConfig = function (name, chunks) {
 	};
 };
 
+//动态添加入口
+function getEntry(PAGES_DIR) {
+	var entry = {};
+	//读取src目录所有page入口
+	glob.sync(PAGES_DIR + '**/*.js').forEach(function (name) {
+		var start = name.indexOf('pages/') + 4;
+		var end = name.length - 3;
+		var eArr = [];
+		var n = name.slice(start, end);
+		n = n.split('/')[1];
+		eArr.push(name);
+		entry[n] = eArr;
+	})
+	return entry;
+}
+let entrys = getEntry('./src/pages/')
 module.exports = {
-	entry: {
-		// 多入口文件
-		index: './src/pages/index/index.js',
-		login: './src/pages/login/index.js',
-	},
+	entry: entrys,
 	module: {
 		rules: [...rules]
 	},
@@ -75,18 +88,17 @@ module.exports = {
 	// 	}
 	// },
 }
-//配置页面
-const htmlArray = [{
-		_html: 'index',
-		title: '首页',
-		chunks: [ 'index']
-	},
-	{
-		_html: 'login',
-		title: '登录',
-		chunks: ['login']
-	},
-];
+
+
+//修改   自动化配置页面
+var htmlArray = [];
+Object.keys(entrys).forEach(function (element) {
+	htmlArray.push({
+		_html: element,
+		title: '',
+		chunks: [element]
+	})
+})
 
 //自动生成html模板
 htmlArray.forEach((element) => {
