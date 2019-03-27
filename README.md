@@ -9,6 +9,7 @@ babel7 后来的版本舍弃了以前的 babel-*-* 的命名方式，改成了 @
  - 删除extract-text-webpack-plugin，改用mini-css-extract-plugin [文档](https://www.npmjs.com/package/mini-css-extract-plugin)
  - npm run build --report //打包后文件大小分析
 
+#### 增加动态添加入口
 ### 更新后报错
 
 ##### clean-webpack-plugin only accepts an options object
@@ -34,7 +35,6 @@ npm run build //生产环境打包
 
 ### [点击前往](https://segmentfault.com/a/1190000014984842)
 
-
 ### License
-### [MIT](http://opensource.org/licenses/MIT)
+### [MIT](https://github.com/zhouyupeng/webpack4.x_demo/blob/master/LICENSE)
 Copyright (c) 2018-present, ypzhou
