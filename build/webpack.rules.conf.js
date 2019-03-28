@@ -46,10 +46,6 @@ const rules = [{
 		use: ["html-withimg-loader"]
 	}, {
 		test: /\.less$/,
-		// 三个loader的顺序不能变
-		// 不分离的写法
-		// use: ["style-loader", "css-loader", "less-loader"]
-		// 区别开发环境和生成环境
 		use: [
 			devMode ? 'style-loader' : {
 				loader: MiniCssExtractPlugin.loader,

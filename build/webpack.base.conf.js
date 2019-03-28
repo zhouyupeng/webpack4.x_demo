@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require("webpack");
 const glob = require("glob");
-const fs = require("fs");
 //消除冗余的css
 const purifyCssWebpack = require("purifycss-webpack");
 // html模板

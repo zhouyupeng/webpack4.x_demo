@@ -7,7 +7,7 @@ const webpackConfigDev = {
 	output: {
 		path: path.resolve(__dirname, '../dist'),
 		// 打包多出口文件
-		// 生成 a.bundle.[hash].js  b.bundle.[hash].js
+		// 生成 a.bundle.js  b.bundle.js
 		filename: './js/[name].bundle.js'
 	},
 	devServer: {
